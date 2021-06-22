@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipPercentageControl;
 @property (weak, nonatomic) IBOutlet UIView *labelsContainerView;
+@property bool hideCheck;
 
 @end
 
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _hideCheck = false;
 }
 
 - (IBAction)onTap:(id)sender {
@@ -31,12 +33,30 @@
     if(self.billField.text.length == 0)
     {
         [self hideLabels];
+        _hideCheck = true;
     }
-    NSLog(@"hello");
+    else if(_hideCheck == true)
+    {
+        [self showLabels];
+        _hideCheck = false;
+    }
     double tipPercentages[] = {0.15, 0.2, 0.25};
     double tipPercentage = tipPercentages[self.tipPercentageControl.selectedSegmentIndex];
     
-    double bill = [self.billField.text doubleValue ];
+    NSString *billText = self.billField.text;
+    double bill = 0.0;
+    
+    if([billText rangeOfString:@"$"].location == 0)
+    {
+        NSLog(@"bingo");
+        bill = [[self.billField.text substringFromIndex:(1)] doubleValue ];
+    }
+    else
+    {
+        NSLog(@"bongo");
+        bill = [self.billField.text doubleValue ];
+    }
+    
     NSLog(@"%f", bill);
 
     double tip = bill * tipPercentage;
