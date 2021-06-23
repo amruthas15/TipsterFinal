@@ -10,11 +10,11 @@ Time spent: 4 hours spent in total
 
 The following **required** functionality is complete:
 
-* [ ] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
+* [X] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 
 The following **optional** features are implemented:
 
-* [ ] UI animations in the form of showing and hiding labels if the bill text field is empty
+* [X] UI animations in the form of showing and hiding labels if the bill text field is empty
 
 ## Video Walkthrough
 
